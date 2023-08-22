@@ -55,7 +55,7 @@ app.use("/api/v1/job-assign", jobAssigningRoute);
 app.use("/api/v1/chats", chatsRouter);
 app.use("/api/v1/messages", messageRouter);
 app.use("/api/v1/notifications", notificationsRoute);
-app.use("/", rootRouter);
+// app.use("/", rootRouter);
 
 app.get("/", (req,res)=>{
   res.send("hello")
