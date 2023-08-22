@@ -57,6 +57,9 @@ app.use("/api/v1/messages", messageRouter);
 app.use("/api/v1/notifications", notificationsRoute);
 app.use("/", rootRouter);
 
+app.get("/", (req,res)=>{
+  res.send("hello")
+})
 // app.use(function (err, req, res, next) {
 //      console.error(err.stack);
 //      res.status(500).send('Something broke!');
