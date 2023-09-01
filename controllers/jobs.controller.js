@@ -97,8 +97,8 @@ export const createJob = async (req, res) => {
         amount: "",
         url: "",
         paidOn: "",
-        blogDocument: "",
-        grammarlyScreenshot: "",
+        blogDocument: [],
+        grammarlyScreenshot: [],
         activeMember: "",
       });
     }
@@ -126,14 +126,14 @@ export const csvCreateJob = async (req, res) => {
     let csvStream = fastcsv
       .parse()
       .validate(function (data) {
-        console.log("data", data);
+        // console.log("data", data);
         return data;
       })
       .on("data-invalid", function (data) {
-        console.log("datasss", data);
+        // console.log("datasss", data);
       })
       .on("data", function (data) {
-        // console.log("sds",data);
+        console.log("sds", JSON.parse(data[4]));
 
         csvData.push({
           keyword: data[0],

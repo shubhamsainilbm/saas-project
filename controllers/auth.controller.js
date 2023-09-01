@@ -49,13 +49,14 @@ export const loginController = async (req, res) => {
           userId: isUserCheck._id,
           userName: isUserCheck.name,
           userEmail: isUserCheck.email,
+          userImage: isUserCheck.image,
           userRole: isUserCheck.role,
           permissions: isUserPermissoins.permissionType,
         },
       },
       process.env.ACCESS_TOKEN,
       {
-        expiresIn: "15m",
+        expiresIn: "7d",
       }
     );
 
@@ -66,7 +67,7 @@ export const loginController = async (req, res) => {
       },
       process.env.REFRESH_TOKEN,
       {
-        expiresIn: "1d",
+        expiresIn: "7d",
       }
     );
 
@@ -117,13 +118,14 @@ export const refreshToken = async (req, res) => {
           userId: isUserCheck._id,
           userName: isUserCheck.name,
           userEmail: isUserCheck.email,
+          userImage: isUserCheck.image,
           userRole: isUserCheck.role,
           permissions: isUserPermissoins.permissionType,
         },
       },
       process.env.ACCESS_TOKEN,
       {
-        expiresIn: "15m",
+        expiresIn: "7d",
       }
     );
 
