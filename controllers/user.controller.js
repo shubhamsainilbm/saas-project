@@ -413,6 +413,7 @@ export const forceDeleteUser = async (req, res) => {
 // Get User for Chat
 
 export const getChatUsers = async (req, res) => {
+  const { id, key } = req.params;
   try {
     const keyword = req.query.search
       ? {
@@ -422,21 +423,39 @@ export const getChatUsers = async (req, res) => {
           ],
         }
       : {};
+    const job = await jobsModel.findOne({ _id: id });
+    console.log("job.assignJob.author", job?.assignJob?.author);
+    // const users = await userModel
+    //   .find(keyword)
+    //   .find({
+    //     _id: { $ne: req.userId },
+    //     role: { $ne: "admin" },
+    //     role:
+    //       req.role === "keyword-analyst" || req.role === "evaluator"
+    //         ? { $eq: "author" }
+    //         : req.role === "author"
+    //         ? { $in: ["keyword-analyst", "evaluator"] }
+    //         : "No User Found",
+    //   })
+    //   .where("activeUser")
+    //   .equals(true)
+    //   .findOne({ email: job?.assignJob?.author });
+    const findUserId = await userModel.findOne({ _id: job?.createdBy });
+    console.log(findUserId.email);
+    const users = await userModel.findOne({
+      email:
+        req.role === "keyword-analyst" ||
+        req.role === "admin" ||
+        req.role === "evaluator"
+          ? job?.assignJob?.author
+          : req.role === "author" || (req.role === "admin" && key === "KA")
+          ? findUserId.email
+          : req.role === "author" || (req.role === "admin" && key === "EA")
+          ? job?.assignJob?.evaluator?.evaluatedBy
+          : "",
+    });
+    console.log("first", users);
 
-    const users = await userModel
-      .find(keyword)
-      .find({
-        _id: { $ne: req.userId },
-        role: { $ne: "admin" },
-        role:
-          req.role === "keyword-analyst" || req.role === "evaluator"
-            ? { $eq: "author" }
-            : req.role === "author"
-            ? { $in: ["keyword-analyst", "evaluator"] }
-            : "No User Found",
-      })
-      .where("activeUser")
-      .equals(true);
     res.json(users);
   } catch (error) {
     console.log(error);

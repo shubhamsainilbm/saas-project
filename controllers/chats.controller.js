@@ -2,7 +2,7 @@ import chatsModel from "../models/chats.model.js";
 import userModel from "../models/user.model.js";
 
 export const createChats = async (req, res) => {
-  const { userId } = req.body;
+  const { userId, jobId } = req.body;
   try {
     if (!userId) {
       return res.status(400).json({ message: "User id is required" });
@@ -28,6 +28,7 @@ export const createChats = async (req, res) => {
       let chatData = {
         chatName: "sender",
         users: [req.userId, userId],
+        jobId: jobId,
       };
 
       try {

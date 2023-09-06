@@ -5,36 +5,36 @@ const JobsSchema = mongoose.Schema(
     keyword: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     blogTitle: {
       type: String,
       required: true,
       unique: true,
-      trim: true
+      trim: true,
     },
     products: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     alliedKeyword: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     questions: [
       {
         type: Object,
         required: true,
-        trim: true
+        trim: true,
       },
     ],
     interlinkingBlogs: [
       {
         type: Object,
         required: true,
-        trim: true
+        trim: true,
       },
     ],
     priority: {
@@ -45,7 +45,7 @@ const JobsSchema = mongoose.Schema(
     comments: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     status: {
       type: String,
@@ -63,12 +63,12 @@ const JobsSchema = mongoose.Schema(
       author: {
         type: String,
         default: "",
-        trim: true
+        trim: true,
       },
       evaluator: {
         type: Object,
         default: "",
-        trim: true
+        trim: true,
       },
     },
     pendingOnDesk: {
@@ -77,7 +77,7 @@ const JobsSchema = mongoose.Schema(
     },
     dateOfPublishing: {
       type: String,
-      trim: true
+      trim: true,
     },
     assignJobId: {
       type: mongoose.Schema.Types.ObjectId,

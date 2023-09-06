@@ -70,12 +70,12 @@ export const createJob = async (req, res) => {
         .json({ success: false, message: "All fileds are required" });
     }
 
-    const jobKeywordDuplicate = await jobsModel.findOne({
+    const blogTitleDuplicate = await jobsModel.findOne({
       blogTitle: blogTitle,
     });
 
-    if (jobKeywordDuplicate) {
-      return res.status(400).json({ message: "Duplicat Keywords" });
+    if (blogTitleDuplicate) {
+      return res.status(400).json({ message: "Duplicate Blog Title" });
     }
 
     req.body.createdBy = req.userId;
