@@ -413,7 +413,7 @@ export const forceDeleteUser = async (req, res) => {
 // Get User for Chat
 
 export const getChatUsers = async (req, res) => {
-  const { id, key } = req.params;
+  const { key,  id } = req.params;
   try {
     const keyword = req.query.search
       ? {
