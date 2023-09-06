@@ -13,6 +13,7 @@ export const createChats = async (req, res) => {
         $and: [
           { users: { $elemMatch: { $eq: req.userId } } },
           { users: { $elemMatch: { $eq: userId } } },
+          { jobId: { $eq: jobId } },
         ],
       })
       .populate("users", "-password")
@@ -48,6 +49,7 @@ export const createChats = async (req, res) => {
 };
 
 export const getChats = async (req, res) => {
+  // const { userId, jobId } = req.body;
   try {
     chatsModel
       .find({ users: { $elemMatch: { $eq: req.userId } } })
